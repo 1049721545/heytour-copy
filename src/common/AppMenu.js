@@ -4,7 +4,7 @@ import Login from "../authentication/Login";
 
 export default function AppMenu() {
   const [loginOpen, setLoginOpen] = useState(false);
-  const username = "";
+  const [username, setUsername] = useState("");
   const password = "";
 
   function handleOpenLogin() {
@@ -15,17 +15,6 @@ export default function AppMenu() {
     setLoginOpen(false);
   }
 
-  function handleChange(event) {
-    let nam = event.target.name;
-    let val = event.target.value;
-
-    this.setState({ [nam]: val });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefailt();
-  }
-
   function renderControl() {
     if (username === "") {
       return (
@@ -33,10 +22,16 @@ export default function AppMenu() {
           <Button primary onClick={handleOpenLogin}>
             Login
           </Button>
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            name="username"
+            placeholder="Username"
+          />
         </Menu.Item>
       );
     } else {
-      return <Menu.Item name="username">{username}</Menu.Item>;
+      return <Menu.Item>{username}</Menu.Item>;
     }
   }
 
@@ -48,13 +43,7 @@ export default function AppMenu() {
         <Menu.Menu position="right">{renderControl()}</Menu.Menu>
       </Menu>
 
-      {loginOpen && (
-        <Login
-          open={loginOpen}
-          onClose={handleLoginClose}
-          onChange={(username) => handleChange(username)}
-        />
-      )}
+      {loginOpen && <Login open={loginOpen} onClose={handleLoginClose} />}
     </div>
   );
 }
