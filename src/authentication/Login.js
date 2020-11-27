@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Form, Modal } from "semantic-ui-react";
 
 export default function Login(props) {
-  const [username, setUsername] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
+  const username = "";
 
   return (
     <Modal onClose={props.onClose} open={props.open}>
@@ -13,19 +12,15 @@ export default function Login(props) {
         <Form.Field>
           <label>Username:</label>
           <input
-            value={username}
             placeholder="Username"
-            onChange={(e) => setUsername(e.target.username)}
+            name="username"
+            value={props.username}
+            onChange={() => props.onChange(username)}
           />
         </Form.Field>
         <Form.Field>
           <label>Password:</label>
-          <input
-            value={password}
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.password)}
-          />
+          <input type="password" placeholder="Password" name="password" />
         </Form.Field>
 
         <Button onClick={props.onClose}>Close</Button>

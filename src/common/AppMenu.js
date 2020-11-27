@@ -15,6 +15,17 @@ export default function AppMenu() {
     setLoginOpen(false);
   }
 
+  function handleChange(event) {
+    let nam = event.target.name;
+    let val = event.target.value;
+
+    this.setState({ [nam]: val });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefailt();
+  }
+
   function renderControl() {
     if (username === "") {
       return (
@@ -37,7 +48,13 @@ export default function AppMenu() {
         <Menu.Menu position="right">{renderControl()}</Menu.Menu>
       </Menu>
 
-      {loginOpen && <Login open={loginOpen} onClose={handleLoginClose} />}
+      {loginOpen && (
+        <Login
+          open={loginOpen}
+          onClose={handleLoginClose}
+          onChange={(username) => handleChange(username)}
+        />
+      )}
     </div>
   );
 }
