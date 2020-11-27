@@ -5,7 +5,7 @@ import Login from "../authentication/Login";
 export default function AppMenu() {
   const [loginOpen, setLoginOpen] = useState(false);
   const [username, setUsername] = useState("");
-  const password = "";
+  const [password, setPassword] = useState("");
 
   function handleOpenLogin() {
     setLoginOpen(true);
@@ -22,12 +22,6 @@ export default function AppMenu() {
           <Button primary onClick={handleOpenLogin}>
             Login
           </Button>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            name="username"
-            placeholder="Username"
-          />
         </Menu.Item>
       );
     } else {
@@ -43,7 +37,13 @@ export default function AppMenu() {
         <Menu.Menu position="right">{renderControl()}</Menu.Menu>
       </Menu>
 
-      {loginOpen && <Login open={loginOpen} onClose={handleLoginClose} />}
+      {loginOpen && (
+        <Login
+          open={loginOpen}
+          onClose={handleLoginClose}
+          setUser={(username) => setUsername(username)}
+        />
+      )}
     </div>
   );
 }
