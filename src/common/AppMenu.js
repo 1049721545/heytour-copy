@@ -48,6 +48,12 @@ export default function AppMenu() {
 
           {state.authenticated && (
             <Menu.Item>
+              <Button primary>Add Job</Button>
+            </Menu.Item>
+          )}
+
+          {state.authenticated && (
+            <Menu.Item>
               <Button primary onClick={handleLogout}>
                 Logout
               </Button>
